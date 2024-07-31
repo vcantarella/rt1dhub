@@ -63,11 +63,12 @@ def pulse_injection(
         cr[:, i] = cr[:, i] + co
 
 
+
 # run the following code to test the functions
 if __name__ == "__main__":
     x = np.linspace(0, 0.5, 100)
     t = np.linspace(0.1, 72000, 100)
-    c0 = 1
+    c0 = 2
     c_in = 0
     v = 1e-5
     alpha_l = 1e-3
@@ -86,8 +87,8 @@ if __name__ == "__main__":
 
     for ti in range(t.shape[0]):
         color = colormap(norm(t[ti]))
-        # plt.plot(x, cr[ti,:], color=color)
-        ax.plot(x, crp[ti, :], color=color, linestyle="--")
+        ax.plot(x, cr[ti,:], color=color)
+        #ax.plot(x, crp[ti, :], color=color, linestyle="--")
 
     sm = cm.ScalarMappable(cmap=colormap, norm=norm)
     sm.set_array([])
