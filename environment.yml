@@ -7,6 +7,7 @@ dependencies:
   - numpy
   - scipy
   - numba
+  - sympy
   - pip:
     - jax
     - jaxlib
