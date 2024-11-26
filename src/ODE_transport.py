@@ -1,38 +1,47 @@
-import numba
 import numpy as np
+from numba import jit
 
-
-def create_ADEST(dx, c_in, De, q):
+@jit(nopython=True)
+def ADEST(du, u, p, t, c_in, De, q, dx):
     """
-    Create a right hand side (rhs) function for transport given the initial conditions.
-    The function is used to solve the transport equation using the DifferentialEquations.jl package.
+    Calculate the right-hand side of the transport equation.
 
-    # Arguments
-    - `dx::Real`: The spatial step size.
-    - `c_in::Real`: The inflow concentration.
-    - `De::Real`: The effective difusion coefficient.
-    - `q::Real`: the specific flow rate.
+    Parameters:
+    - du: The derivative of u with respect to time.
+    - u: The concentration array.
+    - p: Parameters array where p[0] is porosity (ϕ) and p[1] is longitudinal dispersivity (αₗ).
+    - t: Time variable.
+    - c_in: The inflow concentration.
+    - De: The effective diffusion coefficient.
+    - q: The specific flow rate.
+    - dx: The spatial step size.
 
-    # Returns
-        A function that calculates the right hand side of the transport equation.
-
-    # Example
-    ```julia
-    ```
+    Returns:
+    - Updates du in place with the right-hand side of the transport equation.
     """
-    def ADEST(du, u, p ,t):
-        ϕ = p[1] # porosity
-        αₗ = p[2] # longitudinal dispersivity
+    ϕ = p[0]  # porosity
+    αₗ = p[1]  # longitudinal dispersivity
 
-        # basic variables of transport
-        v = q/ϕ # velocity
-        De = De + αₗ*v # effective dispersion coefficient
-        # transport
-        c_advec = [c_in;u]
-        advec = -v .* diff(c_advec, dims=1) ./ dx
-        gradc = diff(u, dims=1)./ dx
-        dims = size(u)
-        disp = ([gradc; zeros(1, dims[2])]-[zeros(1, dims[2]); gradc]).* De ./ dx
-        du .= advec .+ disp
-        nothing
-    return ADEST
+    # basic variables of transport
+    v = q / ϕ  # velocity
+    De_eff = De + αₗ * v  # effective dispersion coefficient
+
+    # transport
+    c_advec = np.concatenate(([c_in], u))
+    advec = -v * np.diff(c_advec) / dx
+    gradc = np.diff(u) / dx
+    disp = (np.concatenate((gradc, [0])) - np.concatenate(([0], gradc))) * De_eff / dx
+    du[:] = advec + disp
+
+# Example usage
+du = np.zeros(10)
+u = np.random.rand(10)
+p = np.array([0.3, 1e-3])
+t = 0
+c_in = 1.0
+De = 1e-9
+q = 1e-5
+dx = 0.1
+
+ADEST(du, u, p, t, c_in, De, q, dx)
+print(du)

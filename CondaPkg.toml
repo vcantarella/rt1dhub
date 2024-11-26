@@ -1,0 +1,7 @@
+[deps]
+matplotlib = ""
+numba = ""
+numpy = ""
+sympy = ""
+python = "=3.11"
+scipy = ""

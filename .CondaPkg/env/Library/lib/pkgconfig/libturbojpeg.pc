@@ -1,0 +1,10 @@
+prefix=C:/Users/vcant/Documents/rt1dhub/.CondaPkg/env/Library
+exec_prefix=C:/Users/vcant/Documents/rt1dhub/.CondaPkg/env/Library
+libdir=C:/Users/vcant/Documents/rt1dhub/.CondaPkg/env/Library/lib
+includedir=C:/Users/vcant/Documents/rt1dhub/.CondaPkg/env/Library/include
+
+Name: libturbojpeg
+Description: A SIMD-accelerated JPEG codec that provides the TurboJPEG API
+Version: 2.1.5.1
+Libs: -L${libdir} -lturbojpeg
+Cflags: -I${includedir}

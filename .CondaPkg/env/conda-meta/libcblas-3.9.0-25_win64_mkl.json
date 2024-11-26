@@ -1,0 +1,49 @@
+{
+    "arch": "x86_64",
+    "build": "25_win64_mkl",
+    "build_number": 25,
+    "build_string": "25_win64_mkl",
+    "channel": "https://conda.anaconda.org/conda-forge/win-64",
+    "constrains": [
+        "blas * mkl",
+        "liblapack 3.9.0 25_win64_mkl",
+        "liblapacke 3.9.0 25_win64_mkl"
+    ],
+    "depends": [
+        "libblas 3.9.0 25_win64_mkl"
+    ],
+    "extracted_package_dir": "C:\\Users\\vcant\\.julia\\scratchspaces\\0b3b1443-0f03-428d-bdfb-f27f9c1191ea\\root\\pkgs\\libcblas-3.9.0-25_win64_mkl",
+    "files": [
+        "Library\\bin\\libcblas.dll"
+    ],
+    "fn": "libcblas-3.9.0-25_win64_mkl.conda",
+    "license": "BSD-3-Clause",
+    "link": {
+        "source": "C:\\Users\\vcant\\.julia\\scratchspaces\\0b3b1443-0f03-428d-bdfb-f27f9c1191ea\\root\\pkgs\\libcblas-3.9.0-25_win64_mkl",
+        "type": 1
+    },
+    "md5": "3ed189ba03a9888a8013aaee0d67c49d",
+    "name": "libcblas",
+    "package_tarball_full_path": "C:\\Users\\vcant\\.julia\\scratchspaces\\0b3b1443-0f03-428d-bdfb-f27f9c1191ea\\root\\pkgs\\libcblas-3.9.0-25_win64_mkl.tar.bz2",
+    "paths_data": {
+        "paths": [
+            {
+                "_path": "Library\\bin\\libcblas.dll",
+                "path_type": "hardlink",
+                "sha256": "75f2faf9ba5a658ebe068e9568d1275514f878b7a760d285b16f1e1505eea67c",
+                "sha256_in_prefix": "75f2faf9ba5a658ebe068e9568d1275514f878b7a760d285b16f1e1505eea67c",
+                "size_in_bytes": 26840968
+            }
+        ],
+        "paths_version": 1
+    },
+    "platform": "win",
+    "requested_spec": "",
+    "sha256": "21528cdfe67dafdb2d21925515a167f13963e002c2b6d06d68984767f731850c",
+    "size": 3732258,
+    "subdir": "win-64",
+    "timestamp": 1729643561581,
+    "track_features": "",
+    "url": "https://conda.anaconda.org/conda-forge/win-64/libcblas-3.9.0-25_win64_mkl.conda",
+    "version": "3.9.0"
+}

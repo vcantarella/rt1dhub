@@ -1,0 +1,10 @@
+prefix=C:/Users/vcant/Documents/rt1dhub/.CondaPkg/env/Library
+libdir=${prefix}/lib
+includedir=${prefix}/include
+
+Name: qhullstatic
+Description: Qhull static library
+Version: 8.0.2
+Libs: -L${libdir} -lqhullstatic
+Cflags: -I${includedir}
+

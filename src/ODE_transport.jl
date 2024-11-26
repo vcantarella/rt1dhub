@@ -16,20 +16,19 @@ The function is used to solve the transport equation using the DifferentialEquat
 ```julia
 ```
 """
-function create_ADEST(Δx, cᵢ, Dₑ, q)
+function create_ADEST(Δx, Dₑ, q)
     function ADEST!(du, u, p ,t)
         ϕ = p[1] # porosity
         αₗ = p[2] # longitudinal dispersivity
-
+        c_in = p[3] # inflow concentration
         # basic variables of transport
         v = q/ϕ # velocity
         De = Dₑ + αₗ*v # effective dispersion coefficient
         # transport
-        c_advec = [cᵢ;u]
-        advec = -v .* diff(c_advec, dims=1) ./ Δx
-        gradc = diff(u, dims=1)./ Δx
-        dims = size(u)
-        disp = ([gradc; zeros(1, dims[2])]-[zeros(1, dims[2]); gradc]).* De ./ Δx
+        c_advec = [c_in;u]
+        advec = -v .* diff(c_advec) ./ Δx
+        gradc = diff(u)./ Δx
+        disp = ([gradc; [0]]-[[0]; gradc]).* De ./ Δx
         du .= advec .+ disp
         nothing
     end
