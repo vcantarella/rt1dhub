@@ -1,8 +1,3 @@
-
-using BenchmarkTools
-using Plots
-using FiniteDiff
-using Zygote
 using SpecialFunctions
 """
 constant_injection(cr, x, t, c0, c_in, v, Dl)
@@ -10,7 +5,7 @@ constant_injection(cr, x, t, c0, c_in, v, Dl)
 Calculates the concentration profile of a solute undergoing
 advection-dispersion transport in a porous 1D domain with constant
  in a 1D domain with constant injection
-Original reference: (Lapidus and Amundson, 1952): 
+Original reference: (Ogata & Banks, 1961): 
 Appelo, C.A.J.; Postma, Dieke. Geochemistry, Groundwater and Pollution (p. 104).
 
 # Arguments
@@ -35,10 +30,9 @@ function constant_injection(
      Dl::Real,
      )
     
-    for i in 1:length(x)
-        @inbounds cr[:, i] .= c_in .+ (c0 - c_in) / 2 .* erfc.((x[i] .- v .* t)
-         ./ (2 .* sqrt.(Dl .* t))) #.+ exp(v .* x[i] / Dl)
-         # .* erfc.((x[i] .+ v .* t) ./ (2 .* sqrt.(Dl .* t))))
+    for i in eachindex(x)
+        cr[:, i] .= c_in .+ (c0 - c_in) / 2 .* erfc.((x[i] .- v .* t)
+         ./ (2 .* sqrt.(Dl .* t)))
     end
     return nothing
 end
@@ -49,7 +43,7 @@ pulse_injection(cr, x, t, c0, c_in, v, Dl, t_pulse)
 Calculates the concentration profile of a solute undergoing
 advection-dispersion transport in a porous 1D domain with pulse injection
 (starts at t=0 and ends at t=t_pulse)
-Original reference: (Lapidus and Amundson, 1952):
+Original reference: (Ogata & Banks, 1961):
 Appelo, C.A.J.; Postma, Dieke. Geochemistry, Groundwater and Pollution (p. 104).
 
 # Arguments
@@ -64,7 +58,7 @@ Appelo, C.A.J.; Postma, Dieke. Geochemistry, Groundwater and Pollution (p. 104).
 - `t_pulse::Real`: The time at which the pulse injection ends (at x=0).
 """
 function pulse_injection(
-    cr::Union{Matrix{T}, Zygote.Buffer{T}} where T,
+    cr::Matrix,
     x::Vector,
     t::Vector,
     c0::Number,
@@ -73,23 +67,17 @@ function pulse_injection(
     Dl::Number,
     t_pulse::Number
     )
-    #cr = zeros(length(t), length(x))
     ratio = (c0 - c_in) / 2
     tau = 0.0
-    @inbounds for i=1:length(x), j=1:length(t)
-        exp_term = exp(v .* x[i] / Dl)
-        cr[j, i] = c_in .+ ratio .* (erfc.((x[i] .- v .* t[j])
-         ./ (2 .* sqrt.(Dl .* t[j]))) .+ exp_term
-         .* erfc.((x[i] .+ v .* t[j]) ./ (2 .* sqrt.(Dl .* t[j]))))
+    for i in eachindex(x), j in eachindex(t)
         if t[j] >= t_pulse
             tau = t_pulse
         else
             tau = 0.0
         end
-        co = - ratio .* (erfc.((x[i] .- v .* (t[j] .- tau))
-        ./ (2 .* sqrt.(Dl .* (t[j] .- tau)))) .+ exp_term
-        .* erfc.((x[i] .+ v .* (t[j] .- tau)) ./ (2 .* sqrt.(Dl .* (t[j] .- tau)))))
-        cr[j, i] = cr[j, i] .+ co
+        cr[j, i] = c_in .+ ratio .* (erfc.((x[i] .- v .* t[j])
+         ./ (2 .* sqrt.(Dl .* t[j]))) - erfc.((x[i] .- v .* (t[j] .- tau))
+        ./ (2 .* sqrt.(Dl .* (t[j] .- tau)))))
     end
     return nothing
 end
