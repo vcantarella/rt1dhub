@@ -6,8 +6,8 @@
 # See COPYING in top-level directory.
 #
 
-HWLOC_VERSION="2.11.1"
-prefix="/d/bld/libhwloc_1720460518207/_h_env/Library"
+HWLOC_VERSION="2.11.2"
+prefix="/d/bld/libhwloc_1731374663070/_h_env/Library"
 exec_prefix="${prefix}"
 bindir="${exec_prefix}/bin"
 # this will be changed into $bindir/... during make install

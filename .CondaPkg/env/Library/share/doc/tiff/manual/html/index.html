@@ -5,7 +5,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
 
-    <title>LibTIFF - TIFF Library and Utilities &#8212; LibTIFF 4.6.0 documentation</title>
+    <title>LibTIFF - TIFF Library and Utilities &#8212; LibTIFF 4.5.1 documentation</title>
     <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
     <link rel="stylesheet" type="text/css" href="_static/sphinxdoc.css" />
     <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
@@ -24,7 +24,7 @@
         <li class="right" >
           <a href="specification/index.html" title="TIFF File Format Specification"
              accesskey="N">next</a> |</li>
-        <li class="nav-item nav-item-0"><a href="#">LibTIFF 4.6.0 documentation</a> &#187;</li>
+        <li class="nav-item nav-item-0"><a href="#">LibTIFF 4.5.1 documentation</a> &#187;</li>
         <li class="nav-item nav-item-this"><a href="">LibTIFF - TIFF Library and Utilities</a></li> 
       </ul>
     </div>  
@@ -50,22 +50,25 @@
 <tr class="row-odd"><td><p>Home Page #2</p></td>
 <td><p><a class="reference external" href="https://libtiff.gitlab.io/libtiff/">https://libtiff.gitlab.io/libtiff/</a></p></td>
 </tr>
-<tr class="row-even"><td><p>Latest Stable Release</p></td>
-<td><p>v4.6.0</p></td>
+<tr class="row-even"><td><p>Home Page #3</p></td>
+<td><p><a class="reference external" href="http://libtiff.maptools.org/">http://libtiff.maptools.org/</a></p></td>
 </tr>
-<tr class="row-odd"><td><p>Master Download Site</p></td>
+<tr class="row-odd"><td><p>Latest Stable Release</p></td>
+<td><p>v4.5.1</p></td>
+</tr>
+<tr class="row-even"><td><p>Master Download Site</p></td>
 <td><p><a class="reference external" href="https://download.osgeo.org/libtiff/">download.osgeo.org</a></p></td>
 </tr>
-<tr class="row-even"><td><p>Mailing List</p></td>
+<tr class="row-odd"><td><p>Mailing List</p></td>
 <td><p><a class="reference external" href="mailto:tiff&#37;&#52;&#48;lists&#46;osgeo&#46;org">tiff<span>&#64;</span>lists<span>&#46;</span>osgeo<span>&#46;</span>org</a></p></td>
 </tr>
-<tr class="row-odd"><td><p>List subscription</p></td>
+<tr class="row-even"><td><p>List subscription</p></td>
 <td><p><a class="reference external" href="http://lists.osgeo.org/mailman/listinfo/tiff/">http://lists.osgeo.org/mailman/listinfo/tiff/</a></p></td>
 </tr>
-<tr class="row-even"><td><p>List archive</p></td>
+<tr class="row-odd"><td><p>List archive</p></td>
 <td><p><a class="reference external" href="http://www.awaresystems.be/imaging/tiff/tml.html">http://www.awaresystems.be/imaging/tiff/tml.html</a></p></td>
 </tr>
-<tr class="row-odd"><td><p>Source repository</p></td>
+<tr class="row-even"><td><p>Source repository</p></td>
 <td><p><a class="reference external" href="https://gitlab.com/libtiff/libtiff">https://gitlab.com/libtiff/libtiff</a></p></td>
 </tr>
 </tbody>
@@ -85,12 +88,13 @@ your needs for reading and writing TIFF images.</p>
 UNIX (Linux, BSD, MacOS X) and Windows.</p>
 <div class="admonition warning">
 <p class="admonition-title">Warning</p>
-<p>Starting with libtiff v4.6.0, the source code for most TIFF tools (except tiffinfo,
-tiffdump, tiffcp and tiffset) was discontinued, due to the lack of contributors
-able to address reported security issues.
-It will still be available in the source distribution, but they
-will no longer be built by default, and issues related to them
-will no longer be accepted in the libtiff bug tracker.</p>
+<p>libtiff v4.5.1 will be the last one supporting most TIFF tools (except tiffinfo,
+tiffdump, tiffcp and tiffset), whose maintenance will be discontinued, due
+to the lack of contributors able to address reported security issues.
+Starting with libtiff v4.6.0, their source code, at this time ,will still be
+available in the source distribution, but they will no longer be built by
+default, and issues related to them will no longer be accepted in the
+libtiff bug tracker.</p>
 </div>
 <p>The following sections are included in this documentation:</p>
 <div class="toctree-wrapper compound">
@@ -172,9 +176,25 @@ will no longer be accepted in the libtiff bug tracker.</p>
 <li class="toctree-l1"><a class="reference internal" href="internals.html">Modifying The TIFF Library</a></li>
 <li class="toctree-l1"><a class="reference internal" href="addingtags.html">Defining New TIFF Tags</a></li>
 <li class="toctree-l1"><a class="reference internal" href="tools.html">TIFF Tools Overview</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="tools/fax2ps.html">fax2ps</a></li>
+<li class="toctree-l2"><a class="reference internal" href="tools/fax2tiff.html">fax2tiff</a></li>
+<li class="toctree-l2"><a class="reference internal" href="tools/pal2rgb.html">pal2rgb</a></li>
+<li class="toctree-l2"><a class="reference internal" href="tools/ppm2tiff.html">ppm2tiff</a></li>
+<li class="toctree-l2"><a class="reference internal" href="tools/raw2tiff.html">raw2tiff</a></li>
+<li class="toctree-l2"><a class="reference internal" href="tools/rgb2ycbcr.html">rgb2ycbcr</a></li>
+<li class="toctree-l2"><a class="reference internal" href="tools/thumbnail.html">thumbnail</a></li>
+<li class="toctree-l2"><a class="reference internal" href="tools/tiff2bw.html">tiff2bw</a></li>
+<li class="toctree-l2"><a class="reference internal" href="tools/tiff2pdf.html">tiff2pdf</a></li>
+<li class="toctree-l2"><a class="reference internal" href="tools/tiff2ps.html">tiff2ps</a></li>
+<li class="toctree-l2"><a class="reference internal" href="tools/tiff2rgba.html">tiff2rgba</a></li>
+<li class="toctree-l2"><a class="reference internal" href="tools/tiffcmp.html">tiff2cmp</a></li>
 <li class="toctree-l2"><a class="reference internal" href="tools/tiffcp.html">tiffcp</a></li>
+<li class="toctree-l2"><a class="reference internal" href="tools/tiffcrop.html">tiffcrop</a></li>
+<li class="toctree-l2"><a class="reference internal" href="tools/tiffdither.html">tiffdither</a></li>
 <li class="toctree-l2"><a class="reference internal" href="tools/tiffdump.html">tiffdump</a></li>
+<li class="toctree-l2"><a class="reference internal" href="tools/tiffgt.html">tiffgt</a></li>
 <li class="toctree-l2"><a class="reference internal" href="tools/tiffinfo.html">tiffinfo</a></li>
+<li class="toctree-l2"><a class="reference internal" href="tools/tiffmedian.html">tiffmedian</a></li>
 <li class="toctree-l2"><a class="reference internal" href="tools/tiffset.html">tiffset</a></li>
 <li class="toctree-l2"><a class="reference internal" href="tools/tiffsplit.html">tiffsplit</a></li>
 </ul>
@@ -188,7 +208,6 @@ will no longer be accepted in the libtiff bug tracker.</p>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="releases/index.html">Release history</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="releases/v4.6.0.html">Changes in TIFF v4.6.0</a></li>
 <li class="toctree-l2"><a class="reference internal" href="releases/v4.5.1.html">Changes in TIFF v4.5.1</a></li>
 <li class="toctree-l2"><a class="reference internal" href="releases/v4.5.0.html">Changes in TIFF v4.5.0</a></li>
 <li class="toctree-l2"><a class="reference internal" href="releases/v4.4.0.html">Changes in TIFF v4.4.0</a></li>
@@ -256,7 +275,7 @@ will no longer be accepted in the libtiff bug tracker.</p>
         <li class="right" >
           <a href="specification/index.html" title="TIFF File Format Specification"
              >next</a> |</li>
-        <li class="nav-item nav-item-0"><a href="#">LibTIFF 4.6.0 documentation</a> &#187;</li>
+        <li class="nav-item nav-item-0"><a href="#">LibTIFF 4.5.1 documentation</a> &#187;</li>
         <li class="nav-item nav-item-this"><a href="">LibTIFF - TIFF Library and Utilities</a></li> 
       </ul>
     </div>

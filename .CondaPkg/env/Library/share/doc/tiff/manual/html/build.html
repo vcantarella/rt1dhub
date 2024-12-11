@@ -5,7 +5,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
 
-    <title>Building the TIFF Software Distribution &#8212; LibTIFF 4.6.0 documentation</title>
+    <title>Building the TIFF Software Distribution &#8212; LibTIFF 4.5.1 documentation</title>
     <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
     <link rel="stylesheet" type="text/css" href="_static/sphinxdoc.css" />
     <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
@@ -28,7 +28,7 @@
         <li class="right" >
           <a href="images.html" title="TIFF Test Images"
              accesskey="P">previous</a> |</li>
-        <li class="nav-item nav-item-0"><a href="index.html">LibTIFF 4.6.0 documentation</a> &#187;</li>
+        <li class="nav-item nav-item-0"><a href="index.html">LibTIFF 4.5.1 documentation</a> &#187;</li>
         <li class="nav-item nav-item-this"><a href="">Building the TIFF Software Distribution</a></li> 
       </ul>
     </div>  
@@ -681,14 +681,18 @@ necessary to manually do this work on a non-UNIX system.</p>
 </section>
 <section id="testing-the-software">
 <h2>Testing the software<a class="headerlink" href="#testing-the-software" title="Permalink to this heading">¶</a></h2>
-<p>You can try
+<p>Assuming you have working versions of <a class="reference internal" href="tools/tiffgt.html"><span class="doc">tiffgt</span></a>, you can now use
+it to view any of the sample images available for testing, or try
 <a class="reference internal" href="tools/tiffinfo.html"><span class="doc">tiffinfo</span></a> to display the file metadata.  See the
-<a class="reference internal" href="images.html"><span class="doc">TIFF Test Images</span></a> section on obtaining the test images.
-Otherwise, you can do a cursory check of the library
-with the <a class="reference internal" href="tools/tiffcp.html"><span class="doc">tiffcp</span></a> program. For example,</p>
+<a class="reference internal" href="images.html"><span class="doc">TIFF Test Images</span></a> section on obtaining the test images.  Otherwise, you can
+do a cursory check of the library with the <a class="reference internal" href="tools/tiffcp.html"><span class="doc">tiffcp</span></a> and
+<a class="reference internal" href="tools/tiffcmp.html"><span class="doc">tiff2cmp</span></a> programs. For example,</p>
 <div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>tiffcp<span class="w"> </span>-lzw<span class="w"> </span>cramps.tif<span class="w"> </span>x.tif
+tiffcmp<span class="w"> </span>cramps.tif<span class="w"> </span>x.tif
 </pre></div>
 </div>
+<p>(<strong class="program">tiffcmp</strong> should be silent if the files compare
+correctly).</p>
 </section>
 <section id="libtiff-source-files">
 <h2>LibTIFF source files<a class="headerlink" href="#libtiff-source-files" title="Permalink to this heading">¶</a></h2>
@@ -956,7 +960,7 @@ with the <a class="reference internal" href="tools/tiffcp.html"><span class="doc
         <li class="right" >
           <a href="images.html" title="TIFF Test Images"
              >previous</a> |</li>
-        <li class="nav-item nav-item-0"><a href="index.html">LibTIFF 4.6.0 documentation</a> &#187;</li>
+        <li class="nav-item nav-item-0"><a href="index.html">LibTIFF 4.5.1 documentation</a> &#187;</li>
         <li class="nav-item nav-item-this"><a href="">Building the TIFF Software Distribution</a></li> 
       </ul>
     </div>

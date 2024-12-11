@@ -46,7 +46,7 @@ function constant_injection(
     end
 end
 
-cr_py = np.zeros((ts.shape[1], x.shape[1]))
+cr_py = zeros(length(ts), length(x))
 
 constant_injection(cr, x, ts, c0, c_in, v, Dl)
 
@@ -57,7 +57,7 @@ p = [ϕ, alpha_l, c0]
 prob = ODEProblem(ADEST!, u0, (0.0, 72000.0), p)
 sol = solve(prob, Rosenbrock23(), saveat=ts, abstol=1e-10, reltol=1e-10)
 # plotting the results
-for i in 40:length(t)
+for i in 40:length(ts)
     @test isapprox(sol.u[i], cr[i, :], rtol = 5e-2)
 end
 # Plot both solutions
@@ -89,14 +89,14 @@ sol = solve(prob, Tsit5(), saveat=ts, callback = callback, abstol=1e-11, reltol=
 # plotting the results
 p_pulse = [ϕ, alpha_l, c0]
 prob_pulse = ODEProblem(ADE_pulse!, u0, (0.0, 72000.0), p_pulse)
-sol_pulse = solve(prob_pulse, Tsit5(), saveat=t, abstol=1e-11, reltol=1e-11)
+sol_pulse = solve(prob_pulse, Tsit5(), saveat=ts, abstol=1e-11, reltol=1e-11, tstops = [t_pulse])
 @test sol_pulse.t == ts
 p = plot()
 colors = range(0, stop=1, length=length(ts))  # Create a range of colors
 
 
 for (i, ti) in enumerate(ts)
-    tt = t[i]
+    tt = ts[i]
     sol_index = findfirst(sol.t .== tt)
     scatter!(p, x[1:10:length(x)], cr_pulse[i, 1:10:length(x)], label="", color=cgrad(:viridis)[colors[i]], linestyle=:dash, colorbar = false)
     plot!(p, x, sol.u[sol_index], label="", color=cgrad(:viridis)[colors[i]], linestyle=:dash, colorbar = false)
@@ -134,7 +134,7 @@ norm_mean_squared_error(a, b) = sqrt(sum((a-b).^2)/length(a))/(maximum(a)-minimu
 findfirst(cr_pulse[:,1].> 0)
 for i in 6:length(ts)
     tt = ts[i]
-    sol_index = findlast(sol.t .== tt)
+    local sol_index = findlast(sol.t .== tt)
     @test sol.t[sol_index] == ts[i]
     @test sol.t[sol_index] == sol_pulse.t[i]
     try
